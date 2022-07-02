@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.lyl.foxview_example.R
+import com.lyl.foxview_example.model.Model
 
 open class BaseAdapter<T> constructor(data: Collection<T>) :
     RecyclerView.Adapter<SmartViewHolder>() {
@@ -28,18 +29,7 @@ open class BaseAdapter<T> constructor(data: Collection<T>) :
 
 
     open fun getLayoutIdByViewType(viewType: Int): Int {
-        when (viewType) {
-            ItemType.TITLE -> {
-                return R.layout.item_title
-            }
-            ItemType.CONTENT -> {
-                return R.layout.item_title
-            }
-            ItemType.RAN -> {
-                return R.layout.item_title
-            }
-        }
-        return R.layout.item_title
+        return 0
     }
 
     override fun onBindViewHolder(holder: SmartViewHolder, position: Int) {

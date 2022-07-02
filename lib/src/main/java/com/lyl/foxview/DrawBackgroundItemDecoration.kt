@@ -37,9 +37,13 @@ class DrawBackgroundItemDecoration : ItemDecoration {
             val childCount = parent.adapter!!.itemCount
             for (i in 0 until childCount) {
                 val child = parent.getChildAt(i)
-                val drawConfig =
-                    calcDrawConfig(parent, child, gridLayoutManager, childCount, spanCount)
-                drawConfig?.gradientDrawable?.draw(c)
+                if (child == null) {
+                    continue
+                } else {
+                    val drawConfig =
+                        calcDrawConfig(parent, child, gridLayoutManager, childCount, spanCount)
+                    drawConfig?.gradientDrawable?.draw(c)
+                }
             }
         }
         super.onDraw(c, parent, state)
@@ -67,7 +71,8 @@ class DrawBackgroundItemDecoration : ItemDecoration {
         val t = child.top
         val r = parent.right - parent.left
         val b = child.bottom
-        drawable.setBounds(l, t, r, if (hasNextLine) b else b + lineTopSize)
+//        if (hasNextLine) b else b + lineTopSize
+        drawable.setBounds(l, t, r, b)
         return DrawConfig(hasLastLine, hasNextLine, drawable, position)
     }
 
